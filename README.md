@@ -4,7 +4,7 @@ This repository is for the Alien Adventure app for Udacity's Beginning iOS App D
 
 ###Maintainers
 
-@jarrodparkes
+@diegomalone
 
 ###How To Contribute
 
