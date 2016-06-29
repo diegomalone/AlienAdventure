@@ -12,9 +12,6 @@ extension Hero {
     
     func xorCipherKeySearch(encryptedString: [UInt8]) -> UInt8 {
         
-        // NOTE: This code doesn't exactly mimic what is in the Lesson. We've
-        // added some print statements so that there are no warnings for 
-        // unused variables 😀.
         var key: UInt8
         key = 0
         
@@ -26,13 +23,13 @@ extension Hero {
             decrypted = [UInt8]()
             
             for character in encryptedString {
-                // ADD CODE: perform decryption
-                print(character)
+                let encryptedChar = character ^ x
+                decrypted.append(encryptedChar)
             }
             
             if let decryptedString = String(bytes: decrypted,
                 encoding: NSUTF8StringEncoding) where decryptedString == "udacity" {
-                    // ADD CODE: found match, now what?
+                return x;
             }
         }
         
