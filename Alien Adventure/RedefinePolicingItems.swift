@@ -12,6 +12,8 @@ enum UDPolicingError: ErrorType {
     case NameContainsLaser
     case ItemFromCunia
     case ValueLessThan10
+    
+    static let allValues = [NameContainsLaser, ItemFromCunia, ValueLessThan10]
 }
 
 extension Hero {
@@ -19,7 +21,15 @@ extension Hero {
     func redefinePolicingItems() -> (UDItem throws -> Void) {
         
         func policingFilter(item: UDItem) throws -> Void {
+            let containsLasers = findTheLasers()
             
+            if containsLasers(item) {
+                throw UDPolicingError.NameContainsLaser
+            } else if let planetOfOrigin = item.historicalData["PlanetOfOrigin"] as? String where "Cunia" == planetOfOrigin {
+                throw UDPolicingError.ItemFromCunia
+            } else if item.baseValue < 10 {
+                throw UDPolicingError.ValueLessThan10
+            }
         }
         
         return policingFilter        
